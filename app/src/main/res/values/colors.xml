@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">@color/colorGreen</color>
+    <color name="colorPrimaryDark">@color/colorBlue</color>
+    <color name="colorAccent">@color/colorRed</color>
+
+
+    <color name="colorGreen">#72cb6f</color>
+    <color name="colorBlue">#6984e3</color>
+    <color name="colorRed">#f5675d</color>
+    <color name="colorWhite">#dddddd</color>
+    <color name="colorGray">#b58f8f8f</color>
+
+    <color name="alp_colorRed">#9bf5675d</color>
+    <color name="alp_colorGreen">#9b72cb6f</color>
+    <color name="alp_colorIndigo">#9b5fbdb7</color>
+    <color name="alp_colorWhite">#9bdddddd</color>
+
+</resources>
