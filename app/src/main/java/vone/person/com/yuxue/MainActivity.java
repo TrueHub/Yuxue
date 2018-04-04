@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -31,6 +32,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private TimerTask task;
     private Message msg;
     private long mlTimerUnit = 10;
+    private static final String TAG = "MSL MainActivity";
 
     @SuppressLint("HandlerLeak")
     @Override
@@ -57,7 +59,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         if (yushu < 10) {
                             m = "0" + yushu;
                         }
-                        progress ++;
+                        progress++;
                         loadingView.setmProgress(progress);
                         try {
                             // 100 millisecond
@@ -72,13 +74,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     default:
                         break;
                 }
-
                 super.handleMessage(msg);
             }
 
         };
-
-
     }
 
     private void initView() {
@@ -118,11 +117,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         }
                         timer = new Timer(true);
                         timer.schedule(task, mlTimerUnit, mlTimerUnit); // set timer duration
-
+                        btn_pause.setImageDrawable(getResources().getDrawable(R.drawable.ic_stop_24dp));
                     }
                     break;
                 } else {
+                    saveInfo();
+                    btn_pause.setImageDrawable(getResources().getDrawable(R.drawable.ic_play_arrow_24dp));
                     view.setTag(0);
+                    progress = 0;
                     if (null != timer) {
                         task.cancel();
                         task = null;
@@ -130,12 +132,34 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         timer.purge();
                         timer = null;
                         handler.removeMessages(msg.what);
+                        mlCount = 0;
+                        // 100 millisecond
+                        tv_time.setText("00:00.00");
+                        loadingView.setInit();
                     }
-                    mlCount = 0;
-                    // 100 millisecond
-                    tv_time.setText("00:00.00");
-                    loadingView.setInit();
                 }
         }
+    }
+
+    private void saveInfo() {
+        String standTime = tv_time.getText().toString();
+        boolean a = compareTime(standTime, "00:10.00");
+        if (a){
+            Toast.makeText(this, "不会这么弱吧!!!", Toast.LENGTH_SHORT).show();
+        }else {
+
+        }
+    }
+    private boolean compareTime(String srcTime, String intentTime) {
+        String srcMin = srcTime.substring(0, 2);
+        String srcSec = srcTime.substring(3, 5);
+        String intentMin = intentTime.substring(0, 2);
+        String intentSec = intentTime.substring(3, 5);
+
+        float src = Float.valueOf(srcMin + "." + srcSec);
+        float intent = Float.valueOf(intentMin + "." + intentSec);
+
+        Log.d(TAG, "compareTime: " + src + " , " + intent);
+        return src < intent;
     }
 }

@@ -131,6 +131,7 @@ public class MyLoadingView extends View {
     public void setInit() {
         isNext = 0;
         mProgress = 0;
+        mCirclePaint.setColor(getResources().getColor(R.color.colorGray));
         postInvalidate();
     }
 }
