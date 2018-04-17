@@ -8,7 +8,6 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 
@@ -103,16 +102,16 @@ public class MyLoadingView extends View {
             case 0:
                 if (isNext != 0) mCirclePaint.setColor(mThirdColor);
                 mPaint.setColor(mFirstColor);//圆环的颜色
-                Log.i(TAG, "onDraw: 0 :" + isNext);
+//                Log.i(TAG, "onDraw: 0 :" + isNext);
                 break;
             case 1:
-                Log.i(TAG, "onDraw: 1 : " + isNext);
+//                Log.i(TAG, "onDraw: 1 : " + isNext);
                 mCirclePaint.setColor(mFirstColor);
                 mPaint.setColor(mSecondColor);//圆环的颜色,为上一圈的圆弧的颜色
                 break;
             case 2:
                 mCirclePaint.setColor(mSecondColor);
-                Log.i(TAG, "onDraw: 2 : " + isNext);
+//                Log.i(TAG, "onDraw: 2 : " + isNext);
                 mPaint.setColor(mThirdColor);//圆环的颜色,为上一圈的圆弧的颜色
                 break;
         }
