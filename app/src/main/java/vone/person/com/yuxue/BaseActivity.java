@@ -26,6 +26,7 @@ public class BaseActivity extends AppCompatActivity {
         WindowManager.LayoutParams localLayoutParams = getWindow().getAttributes();
         localLayoutParams.flags = (WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | localLayoutParams.flags);
         setContentView(R.layout.activity_base);
+
     }
 
     @Override

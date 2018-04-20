@@ -98,6 +98,7 @@ public class MyLoadingView extends View {
             x = center + dif / 2;
             rectF = new RectF(x - radius, y - radius, x + radius, y + radius);
         }
+
         switch (isNext % 3) {
             case 0:
                 if (isNext != 0) mCirclePaint.setColor(mThirdColor);
@@ -122,6 +123,9 @@ public class MyLoadingView extends View {
     public void setmProgress(int mProgress) {
         if (mProgress % (100 * 60) == 0) {
             isNext++;
+            if (circleEnd != null) {
+                circleEnd.setCircleNumListener(isNext % 3);
+            }
         }
         this.mProgress = mProgress % (100 * 60);
         postInvalidate();
@@ -132,5 +136,16 @@ public class MyLoadingView extends View {
         mProgress = 0;
         mCirclePaint.setColor(getResources().getColor(R.color.colorGray));
         postInvalidate();
+    }
+
+
+    public interface CircleEnd {
+        void setCircleNumListener(int circleNum);
+    }
+
+    private CircleEnd circleEnd;
+
+    public void setCircleEnd(CircleEnd circleEnd) {
+        this.circleEnd = circleEnd;
     }
 }

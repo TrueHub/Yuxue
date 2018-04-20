@@ -3,4 +3,35 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="qh">
+        <item>为你，千千万万遍。</item>
+        <item>放一颗星球在你的眉头，等你开口再长出宇宙。</item>
+        <item>你掌心的痣，我总记得在哪里。</item>
+        <item>假期很好，除了思念。</item>
+        <item>如果是路过，那我就在终点等你。</item>
+        <item>后来时间都与你有关，还好是你，成为我的喜欢</item>
+        <item>“你最可爱”，我说时来不及思索，而思索之后，还是这样说。</item>
+        <item>懒得有情有义,只想有钱有你</item>
+        <item>我一直都喜欢你，也偶尔喜欢别人，当他们像你的时候。</item>
+        <item>“我喜欢你”这句话有点重，先撂这儿了，你帮我拿一下</item>
+        <item>我喜欢的就是你那副不爱别人只爱我的样子</item>
+        <item>苦酒折柳今相离,无风无月也无你</item>
+        <item>爱是相互的,我喜欢你,你得亲我</item>
+        <item>关了灯的房间,你先找灯还是我</item>
+        <item>希望你喜欢我,希望你最喜欢我,希望你只喜欢我</item>
+        <item>天真热,要来我家吃冰镇西瓜吗,你吃中间最甜的那一口.我来吻你</item>
+        <item>你说谎，你说你不识水性\n却总在我脑海里游来游去的</item>
+        <item>有你的梦\n我总是\n不愿醒来</item>
+        <item>我爱的不多， 一分钟只爱了你六十秒。</item>
+        <item>你的所言所行，全都闪烁着光芒，太过刺目，\n于是我闭上双眼，\n但内心还是无法停止对你的憧憬。</item>
+        <item>你是我这一生，\n等了半世未拆的礼物。</item>
+        <item>你的眼睛真好看\n里面有 冬夏 晴雨 山川 花草 鸟兽\n但还是我的眼睛更好看 因为里面有你</item>
+        <item>我是你的东西，请依靠我</item>
+        <item>子曰：三思而后行\n1...2...3...\n我喜欢你</item>
+        <item>假期很好</item>
+        <item>假期很好</item>
+        <item>假期很好</item>
+        <item>假期很好</item>
+        <item>假期很好</item>
+    </string-array>
 </resources>

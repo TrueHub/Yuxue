@@ -1,5 +1,7 @@
 package vone.person.com.yuxue.tools;
 
+import android.text.TextUtils;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -7,7 +9,6 @@ import java.util.Locale;
 
 /**
  * Created by user on 2017/4/6.
- *
  */
 
 public class DateUtils {
@@ -21,7 +22,9 @@ public class DateUtils {
         return sf.format(d);
     }
 
-    /**时间戳转换成字符窜*/
+    /**
+     * 时间戳转换成字符窜
+     */
     public static String getDateToString(long time) {
         time += getStringToDate("2017-1-1 08:00:00:000", "yyyy-MM-dd HH:mm:ss:SSS");
         sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS", Locale.CHINA);
@@ -29,8 +32,10 @@ public class DateUtils {
         return sf.format(d);
     }
 
-    /**将字符串转为时间戳*/
-    public static long getStringToDate(String time , String pattern) {
+    /**
+     * 将字符串转为时间戳
+     */
+    public static long getStringToDate(String time, String pattern) {
         SimpleDateFormat sdf = new SimpleDateFormat(pattern, Locale.CHINA);
         Date date = new Date();
         try {
@@ -43,6 +48,7 @@ public class DateUtils {
 
     /**
      * 传入一个long型的time，比较与现在时间的差异
+     *
      * @param diff 相差毫秒数
      * @return r
      */
@@ -85,19 +91,38 @@ public class DateUtils {
         return result;
     }
 
-    public static int currentTimeSec(){
-        long a = getStringToDate("2017-1-1 08:00:00" , "yyyy-MM-dd HH:mm:ss");
-        long c = System.currentTimeMillis();
-        return (int) ((c -a) / 1000);
+    /**
+     * @param srcTime    12:30.3
+     * @param intentTime 12:23.9
+     * @return
+     */
+    public static boolean compareTime(String srcTime, String intentTime) {
+
+        if (TextUtils.isEmpty(intentTime)) return false;
+        String srcMin = srcTime.substring(0, 2);
+        String srcSec = srcTime.substring(3, 5);
+        String intentMin = intentTime.substring(0, 2);
+        String intentSec = intentTime.substring(3, 5);
+
+        float src = Float.valueOf(srcMin + "." + srcSec);
+        float intent = Float.valueOf(intentMin + "." + intentSec);
+
+        return src < intent;
     }
 
-    public static long current_100_TimeMillis(){
-        long a = getStringToDate("2017-1-1 08:00:00:000" , "yyyy-MM-dd HH:mm:ss:SSS");
+    public static int currentTimeSec() {
+        long a = getStringToDate("2017-1-1 08:00:00", "yyyy-MM-dd HH:mm:ss");
         long c = System.currentTimeMillis();
-        return ((c -a) / 100);
+        return (int) ((c - a) / 1000);
     }
 
-    public static void main(String[] args){
+    public static long current_100_TimeMillis() {
+        long a = getStringToDate("2017-1-1 08:00:00:000", "yyyy-MM-dd HH:mm:ss:SSS");
+        long c = System.currentTimeMillis();
+        return ((c - a) / 100);
+    }
+
+    public static void main(String[] args) {
         String a = getDateToString(140202255);
         System.out.println(a);
 

@@ -16,7 +16,9 @@ import java.util.List;
 import vone.person.com.yuxue.BaseActivity;
 import vone.person.com.yuxue.BaseFragment;
 import vone.person.com.yuxue.R;
+import vone.person.com.yuxue.rxbeans.Land;
 import vone.person.com.yuxue.tools.RequestPermissionUtils;
+import vone.person.com.yuxue.tools.RxBus;
 
 import static vone.person.com.yuxue.tools.RequestPermissionUtils.PERMISSION_ACCESS_COARSE_LOCATION;
 import static vone.person.com.yuxue.tools.RequestPermissionUtils.PERMISSION_ACCESS_FINE_LOCATION;
@@ -27,7 +29,6 @@ import static vone.person.com.yuxue.tools.RequestPermissionUtils.PERMISSION_READ
 import static vone.person.com.yuxue.tools.RequestPermissionUtils.PERMISSION_READ_PHONE_STATE;
 
 public class MainActivity extends BaseActivity {
-
 
     private static final String TAG = "MSL MainActivity";
     private ViewPager mViewPager;
@@ -41,7 +42,6 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
-
         String[] permissions = new String[]{
                 PERMISSION_READ_EXTERNAL_STORAGE,
                 PERMISSION_CALL_PHONE,
@@ -60,14 +60,14 @@ public class MainActivity extends BaseActivity {
 
     private void initTableLayout() {
 
-        mTableLayout.setBackgroundColor(getResources().getColor(R.color.colorBlue));
-        mTableLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.colorAccent));//指示条的颜色
+        mTableLayout.setBackgroundColor(getResources().getColor(R.color.alp_colorWhite));
+        mTableLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.colorBgRed));//指示条的颜色
         mTableLayout.setSelectedTabIndicatorHeight(10);
         mTableLayout.setupWithViewPager(mViewPager);
 
         for (int i = 0; i < tabs.size(); i++) {
             TabLayout.Tab tab = mTableLayout.getTabAt(i);
-            TextView textView = (TextView) LayoutInflater.from(this).inflate(R.layout.m_tablelayout,mTableLayout,false);
+            TextView textView = (TextView) LayoutInflater.from(this).inflate(R.layout.m_tablelayout, mTableLayout, false);
             textView.setText(tabs.get(i));
             if (tab != null) {
                 tab.setCustomView(textView);
@@ -80,19 +80,33 @@ public class MainActivity extends BaseActivity {
         fragmentList.add(new Frg_Timer());
         fragmentList.add(new Frg_Notes());
 
-        tabs.add("开始");
+        tabs.add("挑战");
         tabs.add("记录");
 
         mViewPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
+
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                RxBus.getDefault().send(Land.PauseTime);
+            }
+        });
     }
 
     private void initView() {
         mViewPager = (ViewPager) findViewById(R.id.viewPager);
-        mTableLayout = (TabLayout)findViewById(R.id.tableLayout);
+        mTableLayout = (TabLayout) findViewById(R.id.tableLayout);
     }
 
-
-    public class MyPagerAdapter extends FragmentPagerAdapter{
+    public class MyPagerAdapter extends FragmentPagerAdapter {
 
         public MyPagerAdapter(FragmentManager fm) {
             super(fm);

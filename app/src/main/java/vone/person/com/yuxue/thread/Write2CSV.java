@@ -7,6 +7,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import vone.person.com.yuxue.tools.Configs;
+
 /**
  * Created by longyang on 2018/4/10.
  */
@@ -17,8 +19,7 @@ public class Write2CSV {
         if (!Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {//如果不存在SD卡,
             Log.e("SD卡管理：", "SD卡不存在，请加载SD卡");
         }
-        String fileDir = Environment.getExternalStorageDirectory().getAbsolutePath();//SD卡根目录
-        fileDir += "/0_barde";
+        String fileDir = Configs.FILE_DIR;
         File dirFile = new File(fileDir);
         if (!dirFile.exists()) dirFile.mkdirs();
 
@@ -26,17 +27,16 @@ public class Write2CSV {
 
         if (!csvFile.exists()) {
             try {
-                csvFile.createNewFile();
-                addToFileByFileWriter(csvFile.getAbsolutePath(), "startTime,endTime,diffTime,name,remark\n");
+                if (csvFile.createNewFile()) {
+                    addToFileByFileWriter(csvFile.getAbsolutePath(), "startTime,endTime,diffTime,name,remark\n");
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
 
-        addToFileByFileWriter(csvFile.getAbsolutePath(),content);
-
+        addToFileByFileWriter(csvFile.getAbsolutePath(), content);
     }
-
 
     // 以追加形式写文件:写文件器，构造函数中的第二个参数为true
     private void addToFileByFileWriter(String fileName, String content) {

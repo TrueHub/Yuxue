@@ -4,12 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    android:background="@color/colorGray"
-    tools:context="vone.person.com.yuxue.ui.MainActivity">
+    android:fitsSystemWindows="true">
 
 
     <vone.person.com.yuxue.view.MyLoadingView
+        android:visibility="gone"
         android:id="@+id/loadingView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -23,30 +22,69 @@
         app:layout_constraintVertical_bias="1.0"
         app:firstColor="@color/colorGreen"
         app:secondColor="@color/colorBlue"
-        app:thirdColor="@color/colorRed" />
+        app:thirdColor="@color/colorYellow" />
+
 
     <TextView
+        android:visibility="gone"
         android:id="@+id/tv_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="00:00.00"
+        android:textColor="@color/colorGray"
         android:textSize="45sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.53" />
-
+        app:layout_constraintVertical_bias="0.57" />
     <ImageView
-        android:id="@+id/btn_pause"
+        android:id="@+id/img_anim"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@drawable/ic_play_arrow_24dp"
+        android:src="@mipmap/img_start_btn_anim"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.9" />
+
+    <ImageView
+        android:id="@+id/btn_pause"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@mipmap/btn_img_start"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.9" />
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/tv_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="最高记录"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintBottom_toTopOf="@+id/tv_noteTime"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_noteTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textColor="@color/colorBlack"
+        android:textSize="25sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/tv_time"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/loadingView"
+        app:layout_constraintVertical_bias="0.88" />
+
 
 </android.support.constraint.ConstraintLayout>

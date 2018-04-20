@@ -8,4 +8,27 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="MyDialogStyle" parent="Base.Theme.AppCompat.Light.Dialog">
+        <item name="android:windowAnimationStyle">@style/Base.Animation.AppCompat.Dialog</item>
+        <!--<item name="android:windowFrame">@null</item>-->
+        <!--是否浮在窗口之上-->
+        <item name="android:windowIsFloating">true</item>
+        <!--半透明-->
+        <item name="android:windowIsTranslucent">true</item>
+        <!--是否显示title-->
+        <item name="android:windowNoTitle">true</item>
+        <!--dialog之外没有焦点的区域是否罩上黑色半透明-->
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:background">@color/colorBlack</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <!--<item name="android:textSize">@dimen/textsize_III</item>-->
+        <item name="android:textColorPrimary">@color/colorWhite</item>
+    </style>
+
+    <style name="SplashTheme" parent="AppTheme">
+        <item name="android:windowBackground">@color/colorBgRed</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor">@color/colorBgRed</item>
+    </style>
 </resources>
