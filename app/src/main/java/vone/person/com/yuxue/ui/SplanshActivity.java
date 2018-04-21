@@ -1,5 +1,6 @@
 package vone.person.com.yuxue.ui;
 
+import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -10,45 +11,77 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.transition.Explode;
+import android.view.animation.LinearInterpolator;
 
 import java.util.List;
 
 import vone.person.com.yuxue.BaseActivity;
 import vone.person.com.yuxue.R;
+import vone.person.com.yuxue.view.BrandTextView;
 
 import static android.content.pm.PackageManager.GET_PROVIDERS;
 
 public class SplanshActivity extends BaseActivity {
 
+    private BrandTextView textView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splansh);
+        initView();
         if (!isAddShortCut(this)) {
-            addShortcut(this,getString(R.string.app_name));
+            addShortcut(this, getString(R.string.app_name));
         }
-        startActivity(new Intent(this,MainActivity.class));
-        finish();
+        //此activity进入
+        getWindow().setEnterTransition(new Explode().setDuration(500));
+        //此activity退出
+        getWindow().setExitTransition(new Explode().setDuration(500));
+        splansh();
+
+    }
+
+    private void splansh() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(2300);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                startActivity(new Intent(SplanshActivity.this, MainActivity.class));
+                SplanshActivity.this.finish();
+            }
+        }).start();
+
+        ObjectAnimator anm = ObjectAnimator.ofFloat(textView, "alpha", 1, 0.2f);
+        anm.setInterpolator(new LinearInterpolator());
+        anm.setStartDelay(1300);
+        anm.setDuration(1000);
+        anm.start();
+
     }
 
     public static void addShortcut(Activity cx, String name) {
-        // TODO: 2017/6/25  创建快捷方式的intent广播
+        //    创建快捷方式的intent广播
         Intent shortcut = new Intent("com.android.launcher.action.INSTALL_SHORTCUT");
-        // TODO: 2017/6/25 添加快捷名称
+        //   添加快捷名称
         shortcut.putExtra(Intent.EXTRA_SHORTCUT_NAME, name);
         //  快捷图标是允许重复
         shortcut.putExtra("duplicate", false);
         // 快捷图标
         Intent.ShortcutIconResource iconRes = Intent.ShortcutIconResource.fromContext(cx, R.mipmap.snow_f);
         shortcut.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, iconRes);
-        // TODO: 2017/6/25 我们下次启动要用的Intent信息
+        // 下次启动要用的Intent信息
         Intent carryIntent = new Intent(Intent.ACTION_MAIN);
         carryIntent.putExtra("name", name);
-        carryIntent.setClassName(cx.getPackageName(),cx.getClass().getName());
+        carryIntent.setClassName(cx.getPackageName(), cx.getClass().getName());
         carryIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        //添加携带的Intent
+        //  添加携带的Intent
         shortcut.putExtra(Intent.EXTRA_SHORTCUT_INTENT, carryIntent);
-        // TODO: 2017/6/25  发送广播
+        //  发送广播
         cx.sendBroadcast(shortcut);
     }
 
@@ -92,4 +125,11 @@ public class SplanshActivity extends BaseActivity {
         return null;
     }
 
+    private void initView() {
+        textView = (BrandTextView) findViewById(R.id.textView);
+        String[] arr = getResources().getStringArray(R.array.qh);
+
+        int index = (int) (Math.random() * arr.length);
+        textView.setText(arr[index]);
+    }
 }

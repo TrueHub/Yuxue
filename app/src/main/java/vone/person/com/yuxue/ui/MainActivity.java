@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.transition.Fade;
 import android.view.LayoutInflater;
 import android.widget.TextView;
 
@@ -42,6 +43,10 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
+        //此activity进入
+        getWindow().setEnterTransition(new Fade().setDuration(500));
+        //此activity退出
+        getWindow().setExitTransition(new Fade().setDuration(500));
         String[] permissions = new String[]{
                 PERMISSION_READ_EXTERNAL_STORAGE,
                 PERMISSION_CALL_PHONE,

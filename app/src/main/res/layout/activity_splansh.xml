@@ -4,15 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBgRed"
+    android:background="@mipmap/haitang"
     tools:context="vone.person.com.yuxue.ui.SplanshActivity">
 
 
-    <TextView
+    <vone.person.com.yuxue.view.BrandTextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="134dp"
-        tools:layout_editor_absoluteY="294dp" />
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="8dp"
+        android:text="天真热,要来我家吃冰镇西瓜吗\n\n你吃中间最甜的那一口\n\n我来吻你\n\"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 </android.support.constraint.ConstraintLayout>
